@@ -1,0 +1,7 @@
+# Compilation
+__pycache__/
+*.pyc
+
+# Environment Settings
+.venv/
+.vscode/
