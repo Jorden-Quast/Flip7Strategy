@@ -12,15 +12,5 @@ class Number(NumberCard):
 
 @dataclass(frozen=True)
 class Zero(NumberCard):
-    """Zero Number Card: No points, forces receiving player to go for flip 7"""
+    """Zero Number Card: No points, but counts towards flip 7 goal"""
     point_value: int = 0
-
-@dataclass(frozen=True)
-class UnluckySeven(NumberCard):
-    """Unlucky Seven: Receiving player discards everything but this card"""
-    point_value: int = 7
-
-@dataclass(frozen=True)
-class LuckyThirteen(NumberCard):
-    """Lucky Thirteen: Receiving player can have a second thirteen in their hand"""
-    point_value: int = 13

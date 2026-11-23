@@ -20,8 +20,8 @@ class PlayerBase(ABC):
         if self.stay or self.bust:
             return
 
-        # If we have cards, and we don't have the zero, check if we should continue
-        if (len(self.hand) > 0) and not any(isinstance(c, Zero) for c in self.hand): 
+        # If we have cards, check if we should continue
+        if (len(self.hand) > 0): 
             # Check if we're continuing on or deciding to stay
             should_draw = self.should_draw(deck, other_hands)
             if not should_draw:
