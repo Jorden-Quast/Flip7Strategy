@@ -6,7 +6,7 @@ class CardCountPlayer(PlayerBase):
     def __init__(self, card_threshold: int):
         super().__init__()
 
-        if card_threshold < 0 or card_threshold > 7:
+        if card_threshold < 1 or card_threshold > 7:
             raise ValueError("Unreachable number of cards given")
         self.card_threshold = card_threshold
 

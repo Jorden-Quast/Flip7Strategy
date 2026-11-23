@@ -1,6 +1,11 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from random import uniform, randint
 from players import *
-from structure import Deck
+from .deck import Deck
+
+if TYPE_CHECKING:
+    from players.playerBase import PlayerBase
 
 class Game:
     def __init__(self, num_players: int):
