@@ -38,3 +38,23 @@ def test_deck_contents():
                           f"Expecting {1}, got {count}")
 
     assert not errors, "Errors Occurred: " + "; ".join(errors)
+
+def test_draw_card_valid():
+    """ Tests that calling draw_card returns a value"""
+
+    # Set deck to a known state of a single card to deal with randomness
+    deck = Deck()
+    deck.card_counts = {NumberCard(4) : 4}
+
+    card = deck.draw_card()
+    assert isinstance(card, NumberCard) and deck.card_counts[NumberCard(4)] == 3
+
+def test_draw_card_empty():
+    """ Tests that calling draw_card on an empty deck raises an exception """
+    # Set deck to be empty
+    deck = Deck()
+    deck.card_counts = {}
+
+    # Trying to draw from an empty deck should raise an exception
+    with pytest.raises(ValueError):
+        deck.draw_card()
