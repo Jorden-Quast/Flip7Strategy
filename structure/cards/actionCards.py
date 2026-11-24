@@ -2,7 +2,11 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class ActionSecondChance:
-    """Second Chance: Allows the player to draw a duplicate card without busting"""
+    """
+    Second Chance: Allows the player to draw a duplicate card without busting
+    If receiving player already has a second chance card, they must the new one to someone else
+    If all players already have a second chance card, do nothing
+    """
     pass
 
 @dataclass(frozen=True)
