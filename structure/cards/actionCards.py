@@ -1,6 +1,11 @@
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
+class ActionSecondChance:
+    """Second Chance: Allows the player to draw a duplicate card without busting"""
+    pass
+
+@dataclass(frozen=True)
 class ActionFreeze:
     """Freeze Action Card: Forces target player to stay"""
     pass
@@ -13,4 +18,4 @@ class ActionFlipThree:
     """
     pass
 
-ActionCard = ActionFlipThree | ActionFreeze
+ActionCard = ActionSecondChance | ActionFlipThree | ActionFreeze
