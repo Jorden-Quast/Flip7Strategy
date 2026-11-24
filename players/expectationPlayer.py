@@ -3,6 +3,14 @@ from structure import Deck
 from structure.cards import NumberCard
 
 class ExpectationPlayer(PlayerBase):
+    """
+    Player who's strategy is to only draw if the statistical expectation says they will benefit
+
+    Second order math player, using all information available.
+        E(draw) = (1 - P(bust)) * (Current_Score + E(valid cards))
+        Where E(x) is the expectation value of the random variables
+        Draw if E(draw) > current score (Includes Modifiers)
+    """
     ID = "EXPECTATION"
 
     def __init__(self):
