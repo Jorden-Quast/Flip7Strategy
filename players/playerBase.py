@@ -3,6 +3,13 @@ from structure import Deck
 from structure.cards import *
 
 class PlayerBase(ABC):
+    """
+    Abstract Base Class representing an arbitrary "Player"
+
+    Has the shared logic for how players behave inside a game and
+    round, but leaves specific decisions like deciding to draw up to
+    implementations
+    """
     ID = "BASE"
 
     def __init__(self):
@@ -35,7 +42,6 @@ class PlayerBase(ABC):
 
         if isinstance(card, NumberCard):
             self.hand.append(card)
-
 
     def end_round(self) -> None:
         # Add total score if possible
