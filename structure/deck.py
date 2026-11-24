@@ -4,7 +4,7 @@ from random import randint
 class Deck:
     def __init__(self):
         self.card_counts: dict[Card, int] = {}
-        for i in range(1, 12):
+        for i in range(1, 13):
             self.card_counts[Number(i)] = i
         
         # Add Special Number Cards

@@ -1,6 +1,11 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from random import uniform, randint
 from players import *
-from structure import Deck
+from .deck import Deck
+
+if TYPE_CHECKING:
+    from players.playerBase import PlayerBase
 
 class Game:
     def __init__(self, num_players: int):
@@ -27,13 +32,10 @@ class Game:
 
             case 2:
                 prob_threshold = uniform(0, 1)
-                prob_error = uniform(-0.25, 0.25)
-
-                return ProbabilityPlayer(prob_threshold, prob_error)
+                return ProbabilityPlayer(prob_threshold)
 
             case 3:
-                prob_error = 0 # uniform(-0.25, 0.25)
-                return ExpectationPlayer(prob_error)
+                return ExpectationPlayer()
 
             case _:
                 raise ValueError("Bug in Player Creation Logic")

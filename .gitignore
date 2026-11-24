@@ -2,6 +2,10 @@
 __pycache__/
 *.pyc
 
+# Testing
+pyproject.toml
+.pytest_cache/
+
 # Environment Settings
 .venv/
 .vscode/

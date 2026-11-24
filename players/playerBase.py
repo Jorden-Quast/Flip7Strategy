@@ -3,6 +3,13 @@ from structure import Deck
 from structure.cards import *
 
 class PlayerBase(ABC):
+    """
+    Abstract Base Class representing an arbitrary "Player"
+
+    Has the shared logic for how players behave inside a game and
+    round, but leaves specific decisions like deciding to draw up to
+    implementations
+    """
     ID = "BASE"
 
     def __init__(self):
@@ -36,7 +43,6 @@ class PlayerBase(ABC):
         if isinstance(card, NumberCard):
             self.hand.append(card)
 
-
     def end_round(self) -> None:
         # Add total score if possible
         if not self.bust:
@@ -52,8 +58,31 @@ class PlayerBase(ABC):
         self.hand = []
 
     def get_hand_score(self) -> int:
+        """
+        Returns the players current take-home score
+
+        Returns
+        -------
+        int
+            Sum of the point values in the hand
+        """
         return sum(card.point_value for card in self.hand)
 
     @abstractmethod
     def should_draw(self, deck: Deck, other_hands: list[list[int]]) -> bool:
+        """
+        Determine if the player should draw based on their own internal strategy
+
+        Parameters
+        ----------
+        deck: Deck
+            The current game deck
+        other_hands: list[list[int]]
+            Every other players hand. TODO: Update to use the card class
+        
+        Returns
+        -------
+        bool:
+            Flag representing wether the player has decided to draw this turn
+        """
         pass
