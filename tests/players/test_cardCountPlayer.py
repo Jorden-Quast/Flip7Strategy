@@ -1,4 +1,4 @@
-import pytest # type: ignore
+import pytest
 from players.cardCountPlayer import CardCountPlayer
 from structure.deck import Deck
 from structure.cards import NumberCard

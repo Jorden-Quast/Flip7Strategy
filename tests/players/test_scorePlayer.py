@@ -1,22 +1,22 @@
-import pytest # type: ignore
+import pytest
 from players import ScorePlayer
 from structure import Deck
 from structure.cards import NumberCard
 
 def test_valid_score_threshold_bottom():
-    """ Checks that the minimum valid card threshold is accepted and stored """
+    """ Checks that the minimum valid score threshold is accepted and stored """
     score_threshold = 1
     player = ScorePlayer(score_threshold)
     assert player.score_threshold == score_threshold
 
 def test_valid_score_threshold_mid():
-    """ Checks that a middle valid card threshold is accepted and stored """
+    """ Checks that a middle valid score threshold is accepted and stored """
     score_threshold = 30
     player = ScorePlayer(score_threshold)
     assert player.score_threshold == score_threshold
 
 def test_valid_score_threshold_top():
-    """ Checks that the maximum valid card threshold is accepted and stored """
+    """ Checks that the maximum valid score threshold is accepted and stored """
     score_threshold = 63
     player = ScorePlayer(score_threshold)
     assert player.score_threshold == score_threshold

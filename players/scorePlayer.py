@@ -2,6 +2,12 @@ from .playerBase import PlayerBase
 from structure import Deck
 
 class ScorePlayer(PlayerBase):
+    """
+    A player who's strategy is to reach a certain raw hand score.
+
+    Does not account for modifier cards, just whether the 7 countable cards
+    reach an acceptable score, drawing if current score < score threshold
+    """
     ID = "SCORE"
     def __init__(self, score_threshold: int):
         super().__init__()

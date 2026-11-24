@@ -2,6 +2,11 @@ from .playerBase import PlayerBase
 from structure import Deck
 
 class ProbabilityPlayer(PlayerBase):
+    """
+    A player who's strategy is to draw only if the bust probability is below a certain level
+
+    The first-order math player, draws only if P(bust) < probability threshold
+    """
     ID = "PROBABILITY"
     
     def __init__(self, probability_threshold: float):
