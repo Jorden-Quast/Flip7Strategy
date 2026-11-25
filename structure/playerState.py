@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from structure.cards import NumberCard, ModifierCard, ModifierMult, ModifierSum
+from structure.cards import NumberCard, ModifierCard, ModifierSum
 
 @dataclass()
 class PlayerState:
@@ -32,9 +32,7 @@ class PlayerState:
         for card in self.modifiers:
             if isinstance(card, ModifierSum):
                 score += card.point_value
-            elif isinstance(card, ModifierMult):
-                multiplier = card.multiplier
             else:
-                raise ValueError("How did we get here?")
+                multiplier = card.multiplier
         
         return multiplier * score
