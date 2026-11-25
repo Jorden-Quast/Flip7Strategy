@@ -1,6 +1,5 @@
-from players.playerState import PlayerState
 from strategies import Strategy
-from structure.deck import Deck
+from structure import PlayerState, Deck
 
 class CardCount(Strategy):
     """

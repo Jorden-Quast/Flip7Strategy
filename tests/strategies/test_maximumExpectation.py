@@ -1,5 +1,5 @@
 import pytest # type: ignore
-from players import PlayerState
+from structure import PlayerState
 from strategies import MaximumExpectation
 from structure import Deck 
 from structure.cards import NumberCard

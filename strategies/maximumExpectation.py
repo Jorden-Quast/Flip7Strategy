@@ -1,7 +1,6 @@
-from players.playerState import PlayerState
 from strategies import Strategy
+from structure import Deck, PlayerState
 from structure.cards import NumberCard
-from structure.deck import Deck
 
 class MaximumExpectation(Strategy):
     """

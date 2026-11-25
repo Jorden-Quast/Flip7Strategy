@@ -1,6 +1,6 @@
 import pytest
 from strategies import CardCount
-from players import PlayerState
+from structure import PlayerState
 from structure import Deck
 from structure.cards import NumberCard
 

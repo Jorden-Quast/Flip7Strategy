@@ -1,5 +1,5 @@
 import pytest
-from players import PlayerState
+from structure import PlayerState
 from strategies import RiskTolerance
 from structure import Deck
 from structure.cards import NumberCard

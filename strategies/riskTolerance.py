@@ -1,6 +1,5 @@
-from players.playerState import PlayerState
 from strategies import Strategy
-from structure.deck import Deck
+from structure import Deck, PlayerState
 
 class RiskTolerance(Strategy):
     """

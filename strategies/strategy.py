@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
-from players import PlayerState
-from structure import Deck
+from structure import Deck, PlayerState
 
 class Strategy(ABC):
     STRATEGY_NAME = ""

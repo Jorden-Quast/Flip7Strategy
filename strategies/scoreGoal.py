@@ -1,6 +1,5 @@
 from strategies import Strategy
-from players import PlayerState
-from structure.deck import Deck
+from structure import Deck, PlayerState
 
 class ScoreGoal(Strategy):
     """
