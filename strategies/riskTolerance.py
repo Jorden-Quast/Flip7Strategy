@@ -1,14 +1,15 @@
-from .playerBase import PlayerBase
-from structure import Deck
+from strategies import Strategy
+from structure import Deck, PlayerState
 
-class ProbabilityPlayer(PlayerBase):
+class RiskTolerance(Strategy):
     """
     A player who's strategy is to draw only if the bust probability is below a certain level
 
     The first-order math player, draws only if P(bust) < probability threshold
     """
-    ID = "PROBABILITY"
-    
+
+    STRATEGY_NAME = "Risk Tolerance"
+
     def __init__(self, probability_threshold: float):
         super().__init__()
 
@@ -17,10 +18,9 @@ class ProbabilityPlayer(PlayerBase):
 
         self.probability_threshold = probability_threshold
 
-    def should_draw(self, deck: Deck, other_hands: list[list[int]]) -> bool:
-        # If the probability of busting is below a (estimated) threshold, hit
+    def should_draw(self, player_state: PlayerState, deck: Deck) -> bool:
         bust_cards = 0
-        for card in self.hand:
+        for card in player_state.hand:
             bust_cards += deck.card_counts.get(card, 0)
 
         bust_probability = bust_cards / sum(deck.card_counts.values())

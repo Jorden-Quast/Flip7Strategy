@@ -1,15 +1,16 @@
-from structure import Game
-from players import *
+from game import Game
+from strategies import *
+from structure import Player
 import matplotlib.pyplot as plt
 
-def get_mean_rounds(all_players: list[PlayerBase]) -> tuple[list[str], list[float]]:
+def get_mean_rounds(all_players: list[Player]) -> tuple[list[str], list[float]]:
     counts_dict: dict[str, list[int]] = {}
     for player in all_players:
-        current_val = counts_dict.get(player.ID, [0, 0])
+        current_val = counts_dict.get(player.strategy.STRATEGY_NAME, [0, 0])
         current_val[0] += player.rounds_to_win
         current_val[1] += 1
 
-        counts_dict[player.ID] = current_val
+        counts_dict[player.strategy.STRATEGY_NAME] = current_val
 
     strategies: list[str] = sorted(counts_dict.keys())
     mean_rounds: list[float] = []
@@ -18,17 +19,17 @@ def get_mean_rounds(all_players: list[PlayerBase]) -> tuple[list[str], list[floa
 
     return strategies, mean_rounds
 
-def get_card_count_dist(all_players: list[PlayerBase]):
+def get_card_count_dist(all_players: list[Player]):
     counts_dict: dict[int, list[int]] = {}
     for player in all_players:
-        if not isinstance(player, CardCountPlayer):
+        if not isinstance(player.strategy, CardCount):
             continue
 
-        current_val = counts_dict.get(player.card_threshold, [0, 0])
+        current_val = counts_dict.get(player.strategy.card_threshold, [0, 0])
         current_val[0] += player.rounds_to_win
         current_val[1] += 1
 
-        counts_dict[player.card_threshold] = current_val
+        counts_dict[player.strategy.card_threshold] = current_val
 
     thresholds = sorted(counts_dict.keys())
     mean_rounds: list[float] = []
@@ -37,17 +38,17 @@ def get_card_count_dist(all_players: list[PlayerBase]):
 
     return thresholds, mean_rounds
 
-def get_score_count_dist(all_players: list[PlayerBase]):
+def get_score_count_dist(all_players: list[Player]):
     counts_dict: dict[int, list[int]] = {}
     for player in all_players:
-        if not isinstance(player, ScorePlayer):
+        if not isinstance(player.strategy, ScoreGoal):
             continue
 
-        current_val = counts_dict.get(player.score_threshold, [0, 0])
+        current_val = counts_dict.get(player.strategy.score_threshold, [0, 0])
         current_val[0] += player.rounds_to_win
         current_val[1] += 1
 
-        counts_dict[player.score_threshold] = current_val
+        counts_dict[player.strategy.score_threshold] = current_val
 
     thresholds = sorted(counts_dict.keys())
     mean_rounds: list[float] = []
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     num_players = 3
     log_interval = num_games / 10
 
-    all_players: list[PlayerBase] = []
+    all_players: list[Player] = []
     for i in range(num_games):
         if i % log_interval == 0:
             print(f"Game {i}")
