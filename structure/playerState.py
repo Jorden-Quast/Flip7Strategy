@@ -13,6 +13,9 @@ class PlayerState:
         """
         Gets the current score of the player for a round
 
+        By the rules, modifier cards first add bonus points
+        *then* multiply
+
         Parameters
         ----------
         include_modifiers: bool
@@ -24,15 +27,16 @@ class PlayerState:
             The players current score
         """
 
-        score = sum(card.point_value for card in self.hand)
+        hand_score = sum(card.point_value for card in self.hand)
         if not include_modifiers or not self.modifiers:
-            return score
+            return hand_score
 
         multiplier = 1
+        extra_points = 0
         for card in self.modifiers:
             if isinstance(card, ModifierSum):
-                score += card.point_value
+                extra_points += card.point_value
             else:
                 multiplier = card.multiplier
         
-        return multiplier * score
+        return (multiplier * hand_score) + extra_points
