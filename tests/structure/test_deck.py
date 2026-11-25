@@ -8,12 +8,12 @@ def test_deck_contents():
 
     Should be:
 
-        - 77 Standard Number Cards (12 - 1)
+        - 78 Standard Number Cards (12 - 1)
         - 1  Zero Card
-        
-        TODO:
         - 5  Addition Modifier Cards (2, 4, 6, 8, 10)
         - 1  x2 Modifier Cards (x2)
+        
+        TODO:
         - 3  Freeze Cards
         - 3  Flip Three Cards
         - 3  Second Chance Cards
@@ -23,7 +23,7 @@ def test_deck_contents():
     deck = Deck()
 
     # Check that the total number of cards is correct
-    expected_num_cards = 79
+    expected_num_cards = 85
     measured_num_cards = sum(deck.card_counts.values())
     if measured_num_cards != expected_num_cards:
         errors.append(f"Incorrect Total Number of Cards. Expecting {expected_num_cards}, got {measured_num_cards}")
@@ -36,6 +36,12 @@ def test_deck_contents():
         if isinstance(card, Zero) and count != 1:
             errors.append(f"Incorrect Number of Cards for Zero. "+
                           f"Expecting {1}, got {count}")
+        if isinstance(card, ModifierSum) and count != 1:
+            errors.append(f"Incorrect Number of Cards for +{card.point_value}."+
+                          f"Expecting 1, got {count}")
+        if isinstance(card, ModifierMult) and count != 1:
+            errors.append(f"Incorrect Number of Cards for x2 Multiplier."+
+                          f"Expecting 1, got {count}")
 
     assert not errors, "Errors Occurred: " + "; ".join(errors)
 

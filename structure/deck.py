@@ -3,12 +3,27 @@ from random import randint
 
 class Deck:
     def __init__(self):
+        """
+        Standard Flip 7 Deck Contains 94 cards:
+            - 78 Number Cards, 12 12's, 11 11's, . . . 1 1
+            - 1 Zero Card
+            - 5 Bonus Point Modifiers, 1 ea of +2, +4, +6, +8, +10
+            - 1 Multiplier Modifier
+            - 3 Freeze Cards
+            - 3 Flip Three Cards
+            - 3 Second Chance Car
+        """
         self.card_counts: dict[Card, int] = {}
+
+        # Add Number Cards
+        self.card_counts[Zero()] = 1
         for i in range(1, 13):
             self.card_counts[Number(i)] = i
-        
-        # Add Special Number Cards
-        self.card_counts[Zero()] = 1
+
+        # Add Modifier Cards
+        self.card_counts[ModifierMult()] = 1
+        for i in range(2, 12, 2):
+            self.card_counts[ModifierSum(i)] = 1
 
     def draw_card(self) -> Card:
         # Get the total number of cards remaining
