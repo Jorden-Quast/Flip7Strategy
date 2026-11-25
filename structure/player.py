@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from .playerState import PlayerState
-from structure.cards import NumberCard
+from structure.cards import NumberCard, ModifierCard
 
 if TYPE_CHECKING:
     from strategies import Strategy
@@ -45,11 +45,13 @@ class Player:
 
         if isinstance(card, NumberCard):
             self.round_state.hand.append(card)
+        elif isinstance(card, ModifierCard):
+            self.round_state.modifiers.append(card)
 
     def end_round(self) -> None:
         # Add total score if possible
         if not self.round_state.bust:
-            self.total_score += sum(card.point_value for card in self.round_state.hand)
+            self.total_score += self.round_state.get_score(True)
 
             # Give 15 pt bonus for reaching 7 cards
             if len(self.round_state.hand) == 7:
